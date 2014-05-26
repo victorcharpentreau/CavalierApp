@@ -1,14 +1,12 @@
 package Iterations;
 
-import Graphique.FenetreEchiquier;
+import Controller.*;
+import Graphique.Fenetre;
 
 public class Main {
 
-
-
 	public static void main(String[] args) {
-		FenetreEchiquier fenetre = new FenetreEchiquier();
-		
+		Fenetre maFenetre = new Fenetre();
 	}
 
 }
