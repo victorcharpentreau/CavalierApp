@@ -1,7 +1,7 @@
 package Iterations;
 
-import Controller.*;
 import Graphique.Fenetre;
+import Model.Cavalier;
 
 public class Main {
 

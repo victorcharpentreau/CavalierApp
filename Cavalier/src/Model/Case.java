@@ -1,4 +1,4 @@
-package Controller;
+package Model;
 
 import java.awt.Color;
 
@@ -11,7 +11,7 @@ public class Case extends JPanel{
 	private Color couleur;
 	private Boolean estDisponible;
 
-	Case(){
+	public Case(){
 		this.taille = 100;
 		this.estDisponible = true;
 	}
