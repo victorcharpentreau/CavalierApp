@@ -7,8 +7,8 @@ public class Echiquier{
 	
 	private static volatile Echiquier instance = null;
 	
-	private int nbCasesLigne = 4;
-	private int nbCasesColonne = 4;
+	private int nbCasesLigne = 8;
+	private int nbCasesColonne = 8;
 	private ArrayList<Case> listeCases = new ArrayList<Case>();
 	
 	protected Echiquier(){

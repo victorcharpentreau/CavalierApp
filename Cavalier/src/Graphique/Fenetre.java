@@ -1,6 +1,9 @@
 package Graphique;
 
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
+
 import Model.Echiquier;
 
 public class Fenetre extends JFrame{
@@ -17,5 +20,6 @@ private Echiquier echiquier = Echiquier.getInstance();
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.getContentPane().add(echiquierGraphique);
 	    this.setVisible(true);
+	    echiquierGraphique.jouer();
 	} 
 }

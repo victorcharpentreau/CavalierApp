@@ -24,7 +24,7 @@ public class Cavalier{
 	
 	private Cavalier(){
 		initCavalier();
-		moveKnight();
+		findPossibleCases(this.getCaseCourante());
 	}
 	
 	public static Cavalier getInstance(){
@@ -48,12 +48,12 @@ public class Cavalier{
 		this.setTailleImage(100);
 		this.setCaseCourante(echiquier.getListeCases().get(random));
 		this.getCaseVistitees().add(this.getCaseCourante());
+		this.getCaseCourante().setCouleur(Color.green);
 	}
 	
 	//Recherche des prochaines cases possibles pour le déplacement du cavalier
 	public void findPossibleCases(Case caseCourante){
-		int x  = caseCourante.getPosX();
-		int y = caseCourante.getPosY();
+		this.setCasePossible(new ArrayList<Case>());
 		//ici, à partir de la case sur lequel le cavalier est placé, on ajoute tous les déplacements possibles 
 		for (int i = 0; i < 8; i++) {
 			int newX = caseCourante.getPosX() + MOVEX[i];
@@ -61,7 +61,9 @@ public class Cavalier{
 			//Si la case possible est bien dans le périmètre de l'échiquier
 			if ((newX >= 0) && (newX < Echiquier.getInstance().getNbCasesColonne()*100) && (newY >= 0) && (newY < Echiquier.getInstance().getNbCasesLigne()*100)){
 				Case possibilite  = this.findCaseByPos(newX, newY);
-				this.getCasePossible().add(possibilite);
+				if (!this.getCaseVistitees().contains(possibilite) ) {
+					this.getCasePossible().add(possibilite);
+				}
 			}
 		}
 	}
@@ -80,19 +82,22 @@ public class Cavalier{
 	}
 	
 	//Déplacer le cavalier
-	public void moveKnight(){
-		findPossibleCases(this.getCaseCourante());
+	public void moveKnight(){		
+		//Choisie une case au hasard parmis ces cases là
 		int lower = 0;
 	    int higher = this.getCasePossible().size();
 	    int random = (int)(Math.random() * (higher-lower)) + lower;
-	    
 	    Case choisie = this.getCasePossible().get(random);
-	    Case courante = this.getCaseCourante();
-	    this.getCasePossible().add(courante);
+	    
+	    //Case courante = this.getCaseCourante();
+	    //this.getCasePossible().add(courante);
 	    this.getCaseVistitees().add(choisie);
 	    this.getCasePossible().remove(choisie);
 	    this.setCaseCourante(choisie);
+	    this.getCaseCourante().setCouleur(Color.green);
 	    
+		//cherche les cases possibles
+		findPossibleCases(this.getCaseCourante());
 	}
 	
 	public BufferedImage getImage() {
